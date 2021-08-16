@@ -316,7 +316,8 @@ SELECT reply.user_id,reply.reply from ((user inner join follower on user.user_id
 
 inner join tweet on T.following_user_id=tweet.user_id) as A left join reply on reply.tweet_id=A.tweet_id
 
-where A.follower_user_id=${user1.user_id} and reply.tweet_id=${tweetId};`;
+where A.follower_user_id=${user1.user_id} and reply.tweet_id=${tweetId}
+order by reply.user_id;`;
 
     const user = await db.all(getTweetsQuery);
 
